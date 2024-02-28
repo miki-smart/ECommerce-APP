@@ -1,0 +1,10 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+
+[*.cs]
+dotnet_style_field_prefix = _
+dotnet_style_field_prefix_first_character_kinds = instance,static
+dotnet_style_field_prefix_pascal_case = false
