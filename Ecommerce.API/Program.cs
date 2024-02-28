@@ -15,10 +15,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.ServiceCollection(builder.Configuration);
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleWare>();
+app.UseCors("CorsPolicy");
 app.AddSwaggerExtension();
 if (app.Environment.IsDevelopment())
 {

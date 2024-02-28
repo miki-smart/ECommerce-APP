@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Ecommerce.API.Dto;
 using Ecommerce.API.Error;
+using Ecommerce.API.Helpers;
 using Ecommerce.Core.Entities;
 using Ecommerce.Core.Implementation;
 using Ecommerce.Core.Interface;
+using Ecommerce.Infrastructure.Specification;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
@@ -29,11 +31,15 @@ namespace Ecommerce.API.Controllers
             _productTypeRepo = productTypeRepo;
         }
         [HttpGet("products")]
-        public async Task<IActionResult> GetProducts()
+        public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery] ProductSpecParams productSpecParams) 
         {
-            var spec=new ProductWithTypeAndBrandSpecification();
+            var spec=new ProductWithTypeAndBrandSpecification(productSpecParams);
+            var countSpec=new ProductWithFilterCountSpecification(productSpecParams);
+            var totalItems = await _productRepo.CountAsync(countSpec);
+
             var products = await _productRepo.ListAsync(spec);
-            return Ok(_mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductDto>>(products));
+            var data = _mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductDto>>(products);
+            return Ok(new Pagination<ProductDto>(productSpecParams.PageIndex,productSpecParams.PageSize,totalItems,data));
         }
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ProductDto),StatusCodes.Status200OK)]
