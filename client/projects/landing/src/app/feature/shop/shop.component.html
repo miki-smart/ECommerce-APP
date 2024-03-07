@@ -1,0 +1,101 @@
+
+<div class="container">
+    <div class="row">
+        <section class="col-3">
+            <h5 class="text-center my-3"> Sort</h5>
+            <select class="form-select" (change)="onSortSelected($event.target.value)">
+                
+                <option  *ngFor="let sort of sortOptions" [value]="sort.value" [selected]="sortSelected==sort.value">{{sort.name}}</option>
+              </select>
+              <h5 class="text-center my-3"> Show</h5>
+              <select class="form-select"  (change)="onPageSizeSelected($event.target.value)">
+                <option *ngFor="let page of paginationOptions" [value]="page.value" [selected]="pageSizeSelected==page.value">{{page.name}}</option>
+                
+              </select>
+              <h5 class="text-center my-3"> Price</h5>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input type="text" class="form-control" placeholder="Min" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input type="text" class="form-control" placeholder="Max" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <h5 class="text-center my-3"> Rating</h5>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check
+                -label" for="flexCheckDefault">
+                  4 stars & up
+                </label>
+              </div>
+              <div class="form-check ">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check
+                -label" for="flexCheckDefault">
+                  3 stars & up
+                </label>
+              </div>
+              <div class="form-check ">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check
+                -label" for="flexCheckDefault">
+                  2 stars & up
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check
+                -label" for="flexCheckDefault">
+                  1 star & up
+                </label>
+              </div>                                                                                        
+           <app-brand-list (onSelected)="onBrandSelected($event)"></app-brand-list>
+           <app-type-list (onSelected)="onTypeSelected($event)"></app-type-list>
+        </section>
+        <section class="col-9"><div class="album bg-body-tertiary">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                  <app-pagination-header 
+                  [totalCount]="this.totalCount" 
+                  [pageIndex]="this.options.pageIndex"
+                  [pageSize]="this.options.pageSize"
+                  ></app-pagination-header>
+                        
+                      <div class="d-flex flex-row"> 
+                        <input type="text" class="form-control me-2 my-2" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm">
+                        <button class="btn btn-outline-primary my-2 mx-2" (click)="onSearch()">Search</button>
+                        <button class="btn btn-outline-primary my-2 mx-2"(click)="onResetClicked()">Reset</button>
+                        </div>
+                    
+                </div>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 h-100" >
+                <div class="col-4" *ngFor="let product of products">
+                  <app-product-items [product]="product"></app-product-items>
+                </div>
+                
+              </div>
+
+              <div class="row" *ngIf="totalCount>0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <pagination 
+                  [boundaryLinks]="true" 
+                  [totalItems]="this.totalCount"
+                previousText="&lsaquo;" 
+                nextText="&rsaquo;" 
+                firstText="&laquo;" 
+                lastText="&raquo;"
+                (pageChanged)="onPageChanged($event)"
+                [itemsPerPage]="this.options.pageSize"
+                >
+              
+              </pagination>>
+                </div>
+                
+              </div>
+             
+            </div>
+          </div>
+        </section>
+    </div>
+</div>
