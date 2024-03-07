@@ -8,6 +8,7 @@ using Ecommerce.API.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.API.Error;
 using Ecommerce.API.Extensions;
+using Ecommerce.API.Hub;
 
 
 
@@ -56,7 +57,9 @@ if (app.Environment.IsDevelopment())
         }
     }
 }
+
 app.UseStatusCodePagesWithRedirects("/errors/{0}");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();
