@@ -17,6 +17,7 @@ namespace Ecommerce.API.Extensions
         public static IServiceCollection ServiceCollection(this IServiceCollection services, IConfiguration config)
         {
             services.AddControllers();
+            services.AddSignalR();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.Configure<ApiBehaviorOptions>(options =>

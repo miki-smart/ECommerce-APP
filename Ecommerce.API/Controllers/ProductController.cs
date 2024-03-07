@@ -48,22 +48,22 @@ namespace Ecommerce.API.Controllers
         {
             var spec=new ProductWithTypeAndBrandSpecification(id);
             var product = await _productRepo.GetEntityWithSpec(spec);
-            if(product==null) return NotFound(new ApiErrorResponse(404));
+            if(product==null) return NotFound(new ApiErrorResponse((int)StatusCodes.Status404NotFound));
             return Ok(_mapper.Map<Product,ProductDto>(product));
         }
-        // [HttpGet("brands")]
-        // public async Task<IActionResult> GetProductBrands()
-        // {
-        //     var
-        //     var productBrands = await _productBrandRepo.GetAllAsync();
-        //     return Ok(productBrands);
-        // }
-        // [HttpGet("types")]
-        // public async Task<IActionResult> GetProductTypes()
-        // {
-        //     var productTypes = await _productTypeRepo.GetAllAsync();
-        //     return Ok(productTypes);
-        // }
+        [HttpGet("brands")]
+        public async Task<IActionResult> GetProductBrands()
+        {
+            
+            var productBrands = await _productBrandRepo.ListAllAsync();
+            return Ok(productBrands);
+        }
+        [HttpGet("types")]
+        public async Task<IActionResult> GetProductTypes()
+        {
+            var productTypes = await _productTypeRepo.ListAllAsync();
+            return Ok(productTypes);
+        }
         
     }
 }

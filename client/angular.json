@@ -3,55 +3,77 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "client": {
+    
+    "landing": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
         "@schematics/angular:component": {
-          "style": "css"
+          "skipTests": true,
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true,
+          "standalone": false
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true,
+          "standalone": false
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/landing",
+      "sourceRoot": "projects/landing/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/client",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "outputPath": "dist/landing",
+            "index": "projects/landing/src/index.html",
+            "browser": "projects/landing/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "css",
+            "tsConfig": "projects/landing/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/landing/src/favicon.ico",
+              "projects/landing/src/assets"
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/font-awesome/css/font-awesome.min.css",
-              "src/styles.css"
+              "./node_modules/ngx-toastr/toastr.css",
+              "projects/landing/src/styles.css"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
@@ -74,10 +96,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "client:build:production"
+              "buildTarget": "landing:build:production"
             },
             "development": {
-              "buildTarget": "client:build:development"
+              "buildTarget": "landing:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +107,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "client:build"
+            "buildTarget": "landing:build"
           }
         },
         "test": {
@@ -95,14 +117,13 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "css",
+            "tsConfig": "projects/landing/tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/landing/src/favicon.ico",
+              "projects/landing/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/landing/src/styles.css"
             ],
             "scripts": []
           }
