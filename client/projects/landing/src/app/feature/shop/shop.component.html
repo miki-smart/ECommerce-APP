@@ -70,7 +70,7 @@
                     
                 </div>
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 h-100" >
-                <div class="col-4" *ngFor="let product of products">
+                <div class="col-2" *ngFor="let product of products">
                   <app-product-items [product]="product"></app-product-items>
                 </div>
                 
@@ -89,7 +89,7 @@
                 [itemsPerPage]="this.options.pageSize"
                 >
               
-              </pagination>>
+              </pagination>
                 </div>
                 
               </div>

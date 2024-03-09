@@ -5,7 +5,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { NgModule } from '@angular/core';
 export const routes:Routes = [
     {path:'',component:ShopComponent},
-    {path:'shop',loadChildren:()=>import('./shop/shop.module').then(m=>m.ShopModule)},
+    {path:'shop',loadChildren:()=>import('./shop/shop.module').then(m=>m.ShopModule),data:{breadcrumb:'Shop'}},
     ];
     
     @NgModule({
