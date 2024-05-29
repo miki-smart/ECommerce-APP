@@ -41,7 +41,9 @@ export class ProductService {
  
         
     }
-    public getProductById(id:number):Observable<ApiResponse<IProduct>> {
-        return this.httpClient.get<IProduct>(`${this.apiUrl}/Product/products/${id}`).pipe(map((result:any) => result.body));
+    public getProductById(id:number):Observable<IProduct> {
+        return this.httpClient.get<IProduct>(`${this.apiUrl}Product/${id}`).pipe(map((result:any) =>{
+            return result;
+        } ));
     }
 }

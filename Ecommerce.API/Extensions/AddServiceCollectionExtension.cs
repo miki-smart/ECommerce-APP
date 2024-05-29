@@ -39,6 +39,7 @@ namespace Ecommerce.API.Extensions
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IBasketRepository, BasketRepository>();
             return services;
         }
     }

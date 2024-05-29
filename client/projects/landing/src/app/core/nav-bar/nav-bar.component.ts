@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { BasketService } from '../service/basket.service';
+import { Observable } from 'rxjs';
+import { IBasket } from '../models/ibasket.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +10,9 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit{
-
-   text="";
+basket$:Observable<IBasket>;
+   constructor(private basketService:BasketService) {}
   ngOnInit(): void {
-    this.text="nav Bar works";
+    this.basket$ = this.basketService.basket$;
   }
 }

@@ -4,7 +4,7 @@ import { ProductDetailsComponent } from "../product-details/product-details.comp
 import { Router, RouterModule, Routes } from "@angular/router";
 export const routes: Routes = [
     {path:'',component:ShopComponent},
-    {path:':id',component:ProductDetailsComponent}
+    {path:':id',component:ProductDetailsComponent,data:{breadcrumb:{alias:'productDetails'}}}
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

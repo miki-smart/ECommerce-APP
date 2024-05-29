@@ -11,6 +11,8 @@ import { PaginationHeaderComponent } from '../shared/component/pagination-header
 import { SharedModule } from '../shared/shared.module';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { ShopModule } from './shop/shop.module';
+import { BasketComponent } from './basket/basket.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -22,7 +24,8 @@ import { ShopModule } from './shop/shop.module';
         TypeListComponent,
         HomeComponent,
         ShopComponent,
-        
+        BasketComponent,
+
     ],
     exports: [
         ProductItemsComponent,
@@ -31,9 +34,11 @@ import { ShopModule } from './shop/shop.module';
         ShopComponent,
         BrandListComponent,
         TypeListComponent,
-        FeatureRoutingModule
+        FeatureRoutingModule,
+        CarouselModule
     ],
     imports: [SharedModule,FormsModule,CommonModule,
-    FeatureRoutingModule],
+    FeatureRoutingModule,
+ CarouselModule.forRoot()],
 })
 export class FeatureModule { }
