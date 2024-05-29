@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Ecommerce.API.Error;
 using Ecommerce.API.Extensions;
 using Ecommerce.API.Hub;
+using StackExchange.Redis;
 
 
 
@@ -16,6 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.ServiceCollection(builder.Configuration);
+builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
+{
+    var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
+    return ConnectionMultiplexer.Connect(configuration);
+});
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>

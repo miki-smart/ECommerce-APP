@@ -21,12 +21,12 @@ constructor(private productService:ProductService,
   this.breadcrumservice.set('@productDetails', ' ');
 }
 ngOnInit() {
-
+this.loadProduct();
 }
 loadProduct(){
   this.productService.getProductById(+this.activatedRoute.snapshot.params.id).subscribe(res=>{
     console.log(res);
-    this.product = res.data[0];
+    this.product = res;
     this.breadcrumservice.set('@productDetails',this.product.name );
   },error=>{console.log(error)}
   )

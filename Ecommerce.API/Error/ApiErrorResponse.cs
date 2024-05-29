@@ -7,8 +7,8 @@ namespace Ecommerce.API.Error
 {
     public class ApiErrorResponse
     {
-        public  int _statusCode { get; }
-        public  string _message;
+        public  int _statusCode { get;set; }
+        public  string _message { get;set; }
         public ApiErrorResponse(int statusCode, string message = null)
         {
             _message = message?? GetDefaultMessageForStatusCode(statusCode);;
