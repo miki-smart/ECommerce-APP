@@ -13,7 +13,6 @@ import { FeatureRoutingModule } from './feature-routing.module';
 import { ShopModule } from './shop/shop.module';
 import { BasketComponent } from './basket/basket.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -26,7 +25,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
         HomeComponent,
         ShopComponent,
         BasketComponent,
-        CheckoutComponent,
 
     ],
     exports: [
