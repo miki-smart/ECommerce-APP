@@ -7,7 +7,6 @@ using Ecommerce.API.Helpers;
 using Ecommerce.Core.Interface;
 using Ecommerce.Infrastructure.Data;
 using Ecommerce.Infrastructure.Repository;
-using Ecommerce.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,12 +36,7 @@ namespace Ecommerce.API.Extensions
             {
                 options.UseMySql(config.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(config.GetConnectionString("DefaultConnection")));
             });
-            services.AddDbContext<AppIdentityDbContext>(options =>
-            {
-                options.UseMySql(config.GetConnectionString("IdentityConnection"), ServerVersion.AutoDetect(config.GetConnectionString("IdentityConnection")));
-            });
             services.AddAutoMapper(typeof(MappingProfile));
-            services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IBasketRepository, BasketRepository>();
